@@ -73,7 +73,7 @@
 // Typedefs, enums, structs
 //------------------------------------------------------------------------
 
-#define GRIPPER_MAX_OPEN 110.0
+#define GRIPPER_MAX_OPEN 110.0 //Change it to 110 for WSG 50
 #define GRIPPER_MIN_OPEN 0.0
 
 //------------------------------------------------------------------------
@@ -105,7 +105,7 @@ float g_goal_position = NAN, g_goal_speed = NAN, g_speed = 10.0;
 
 bool moveSrv(wsg_50_common::Move::Request &req, wsg_50_common::Move::Response &res)
 {
-	if ( (req.width >= 0.0 && req.width <= 110.0) && (req.speed > 0.0 && req.speed <= 420.0) ){
+	if ( (req.width >= 0.0 && req.width <= GRIPPER_MAX_OPEN) && (req.speed > 0.0 && req.speed <= 420.0) ){
   		ROS_INFO("Moving to %f position at %f mm/s.", req.width, req.speed);
 		res.error = move(req.width, req.speed, false);
 	}else if (req.width < 0.0 || req.width > 110.0){
@@ -123,7 +123,7 @@ bool moveSrv(wsg_50_common::Move::Request &req, wsg_50_common::Move::Response &r
 
 bool graspSrv(wsg_50_common::Move::Request &req, wsg_50_common::Move::Response &res)
 {
-	if ( (req.width >= 0.0 && req.width <= 110.0) && (req.speed > 0.0 && req.speed <= 420.0) ){
+	if ( (req.width >= 0.0 && req.width <= GRIPPER_MAX_OPEN) && (req.speed > 0.0 && req.speed <= 420.0) ){
         ROS_INFO("Grasping object at %f with %f mm/s.", req.width, req.speed);
 		res.error = grasp(req.width, req.speed);
 	}else if (req.width < 0.0 || req.width > 110.0){
@@ -185,10 +185,10 @@ bool incrementSrv(wsg_50_common::Incr::Request &req, wsg_50_common::Incr::Respon
 
 bool releaseSrv(wsg_50_common::Move::Request &req, wsg_50_common::Move::Response &res)
 {
-	if ( (req.width >= 0.0 && req.width <= 110.0) && (req.speed > 0.0 && req.speed <= 420.0) ){
+	if ( (req.width >= 0.0 && req.width <= GRIPPER_MAX_OPEN) && (req.speed > 0.0 && req.speed <= 420.0) ){
   		ROS_INFO("Releasing to %f position at %f mm/s.", req.width, req.speed);
 		res.error = release(req.width, req.speed);
-	}else if (req.width < 0.0 || req.width > 110.0){
+	}else if (req.width < 0.0 || req.width > GRIPPER_MAX_OPEN){
 		ROS_ERROR("Imposible to move to this position. (Width values: [0.0 - 110.0] ");
 		res.error = 255;
 		return false;

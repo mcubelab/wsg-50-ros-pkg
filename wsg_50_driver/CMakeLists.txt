@@ -42,7 +42,7 @@ set(DRIVER_SOURCES_CAN
   src/functions_can.cpp
   src/msg.c)
 
-include_directories(include)
+include_directories(include ${catkin_INCLUDE_DIRS})
 add_definitions(-DOSNAME_LINUX)
 add_definitions(-g)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x") # Need C++11 

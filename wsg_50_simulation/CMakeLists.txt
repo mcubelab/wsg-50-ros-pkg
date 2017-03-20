@@ -18,7 +18,7 @@ catkin_package(
   CATKIN_DEPENDS roscpp urdf std_msgs std_srvs wsg_50_common
 #  DEPENDS system_lib
 )
-
+include_directories(${catkin_INCLUDE_DIRS})
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 

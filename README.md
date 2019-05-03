@@ -1,4 +1,6 @@
-# ROS package for Schunk WSG-50 Gripper
+# ROS package for Weiss Robotics WSG 50 Gripper
+(also distributed as Schunk WSG 50)
+
 Forked from: [https://code.google.com/p/wsg50-ros-pkg](https://code.google.com/p/wsg50-ros-pkg)
 
 Modifications of this repository:
